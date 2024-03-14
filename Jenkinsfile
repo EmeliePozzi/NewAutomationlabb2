@@ -50,15 +50,17 @@ pipeline {
                     }
                  }
             }
-
-        }
-		post {
-			always {
-				robot outputPath: 'Selenium/log/output.xml', passThreshold: 80.0, unstableThreshold: 70.0, onlyCritical: false
-			}
+			
 		}
+
+    }
+	post {
+		always {
+			robot outputPath: 'Selenium/log/output.xml', passThreshold: 80.0, unstableThreshold: 70.0, onlyCritical: false
+		}
+	}
 
           
         
-    }
+    
 }
