@@ -11,7 +11,7 @@ pipeline {
         
         stage('Checkout (Hämtar senaste kodversionen för den valda grenen)') {
             steps {
-                git 'https://github.com/EmeliePozzi/NewAutomationlabb2.git'
+                git branch: "${params.branch}", url: 'https://github.com/EmeliePozzi/NewAutomationlabb2.git'
             }    
         }
         stage('Build trailrunnerProject') {
