@@ -2,6 +2,12 @@ pipeline {
     agent any
 
     stages {
+
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
         
         stage('Checkout (Hämtar senaste kodversionen för den valda grenen)') {
             steps {
@@ -38,21 +44,15 @@ pipeline {
         }
         stage('Run Robot and Post Test') {
             steps {
-                dir('Selenium') {
+                 dir('Selenium') {
                     script {
-                        sh 'robot test.robot'
+                        sh script: "robot --nostatusrc test.robot", returnStatus: true
                     }
-                }
+                 }
             }
-            post {
-                always {
-                    dir('Selenium/log') {
-                        junit 'output.xml'
-                    }
-                }
-            }
-        }
 
+        }
+          
         
     }
 }
