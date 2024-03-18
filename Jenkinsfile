@@ -1,17 +1,20 @@
 pipeline {
     agent any
-
-    stages {
+	 parameters {
+    gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+  }
+  stages {
+    stage('Example') {
+      steps {
+        git branch: "${params.BRANCH}", url: 'https://github.com/EmeliePozzi/NewAutomationlabb2.git'
+      }
+    }
+  
 
         stage('Clean Workspace') {
             steps {
                 cleanWs()
             }
-        }
-	     stage('Checkout (Hämtar senaste kodversionen för den valda grenen)') {
-            steps {
-                git branch: "${params.branch}", url: 'https://github.com/EmeliePozzi/NewAutomationlabb2.git'
-            }    
         }
         
         stage('Build trailrunnerProject') {
