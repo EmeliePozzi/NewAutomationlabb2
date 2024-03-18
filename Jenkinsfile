@@ -34,7 +34,7 @@ pipeline {
             }
         }
         
-        stage('Run Robot and Post Test') {
+        stage('Run Robot framework tests') {
             steps {
                  dir('Selenium') {
                     script {
