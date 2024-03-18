@@ -33,15 +33,7 @@ pipeline {
                 }
             }
         }
-        stage('Post Test from trailrunnerProject') {
-            steps {
-                dir('labb2') {
-                    script {
-                        junit '**/target/surefire-reports/*.xml'
-                    }
-                }
-            }
-        }
+        
         stage('Run Robot and Post Test') {
             steps {
                  dir('Selenium') {
@@ -57,6 +49,8 @@ pipeline {
 	post {
 		always {
 			robot outputPath: 'Selenium/log', passThreshold: 80.0, unstableThreshold: 70.0, onlyCritical: false
+			 junit '**/target/surefire-reports/*.xml'
+
 		}
 	}
 
