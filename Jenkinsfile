@@ -2,7 +2,7 @@ pipeline {
     agent any
 	
   stages {
-
+	//Rensar workspace och tar bort tillfälliga mappar
         stage('Clean Workspace') {
             steps {
                 cleanWs()
@@ -17,7 +17,8 @@ pipeline {
             }
 
         }
-        
+
+	//Rensar upp och tar bort gamla tillfälliga filer(clean) och kör compile och test(install)
         stage('Build trailrunnerProject') {
             steps {
                 dir('labb2') {
@@ -28,6 +29,7 @@ pipeline {
                 }
             }
         }
+	//Kör testerna igen(?)
         stage('Test trailrunnerProject') {
             steps {
                 dir('labb2') {
@@ -37,7 +39,7 @@ pipeline {
                 }
             }
         }
-        
+        //kör Robot Framework-testet, förhindrar att statusinformation läggs till i testfilen och returnerar statuskoden för kommandot när det har körts.
         stage('Run Robot framework tests') {
             steps {
                  dir('Selenium') {
@@ -50,6 +52,7 @@ pipeline {
 		}
 
     }
+	//Postar resultatet av webbtesterna, och även enhetstesterna
 	post {
 		always {
 			robot outputPath: 'Selenium/log', passThreshold: 80.0, unstableThreshold: 70.0, onlyCritical: false
