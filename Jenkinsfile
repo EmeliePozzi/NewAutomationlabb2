@@ -52,7 +52,7 @@ pipeline {
 		}
 
     }
-	//Postar resultatet av webbtesterna, och även enhetstesterna
+	//Postar resultatet av Robot Framework-testerna, och även enhetstesterna.
 	post {
 		always {
 			robot outputPath: 'Selenium/log', passThreshold: 80.0, unstableThreshold: 70.0, onlyCritical: false
