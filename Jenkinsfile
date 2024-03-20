@@ -57,6 +57,11 @@ pipeline {
 		always {
 			robot outputPath: 'Selenium/log', passThreshold: 80.0, unstableThreshold: 70.0, onlyCritical: false
 			 junit '**/target/surefire-reports/*.xml'
+			jacoco(
+                		execPattern: '**/labb2/target/*.exec',
+                		classPattern: '**/labb2/target/classes/automation/labb',
+                		sourcePattern: '**/labb2/src/main/java/automation/labb'
+            		)
 
 		}
 	}
