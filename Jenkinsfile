@@ -1,6 +1,12 @@
 pipeline {
     agent any
     stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+        
         stage('Hämta från github') {
             steps {
                 git 'https://github.com/EmeliePozzi/NewAutomationlabb2.git'
@@ -15,8 +21,8 @@ pipeline {
                     }
                 }
             }
-
         }
+        
         stage('Test trailrunnerProject') {
             steps {
                 dir('labb2') {
@@ -26,6 +32,7 @@ pipeline {
                 }
             }
         }
+        
         stage('Run Robot framework tests') {
             steps {
                 dir('Selenium') {
@@ -35,7 +42,6 @@ pipeline {
                 }
             }
         }
-
     }
     post {
         always {
