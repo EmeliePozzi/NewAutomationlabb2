@@ -7,11 +7,6 @@ pipeline {
             }
         }
         
-        stage('Hämta från github') {
-            steps {
-                git 'https://github.com/EmeliePozzi/NewAutomationlabb2.git'
-            }
-        }
 
         stage('Build trailrunnerProject') {
             steps {
