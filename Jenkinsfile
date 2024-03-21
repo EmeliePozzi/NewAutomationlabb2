@@ -1,20 +1,16 @@
 pipeline {
     agent any
-	 stages {
+    stages {
         stage('Hämta från github') {
             steps {
-                 git branch: '*/master', url: 'https://github.com/EmeliePozzi/NewAutomationlabb2.git'
-
+                git branch: '*/master', url: 'https://github.com/EmeliePozzi/NewAutomationlabb2.git'
             }
         }
-	
-    stages {
         stage('Clean Workspace') {
             steps {
                 cleanWs()
             }
         }
-
         stage('Build trailrunnerProject') {
             steps {
                 dir('labb2') {
@@ -23,18 +19,7 @@ pipeline {
                     }
                 }
             }
-            
-        }
-
-        stage('Test trailrunnerProject') {
-            steps {
-                dir('labb2') {
-                    script {
-                        sh 'mvn test'
-                    }
-                }
-            }
-		post {
+            post {
                 success {
                     echo 'Byggsteg slutfört utan fel.'
                     junit '**/target/surefire-reports/*.xml'
@@ -45,7 +30,15 @@ pipeline {
                 }
             }
         }
-
+        stage('Test trailrunnerProject') {
+            steps {
+                dir('labb2') {
+                    script {
+                        sh 'mvn test'
+                    }
+                }
+            }
+        }
         stage('Run Robot framework tests') {
             steps {
                 dir('Selenium') {
@@ -56,7 +49,6 @@ pipeline {
             }
         }
     }
-
     post {
         always {
             robot outputPath: 'Selenium/log', passThreshold: 80.0, unstableThreshold: 70.0, onlyCritical: false
