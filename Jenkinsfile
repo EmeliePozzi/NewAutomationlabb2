@@ -1,6 +1,13 @@
 pipeline {
     agent any
+	 stages {
+        stage('Hämta från github') {
+            steps {
+                git 'https://github.com/EmeliePozzi/NewAutomationlabb2.git'
 
+            }
+        }
+	
     stages {
         stage('Clean Workspace') {
             steps {
