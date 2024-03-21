@@ -3,7 +3,7 @@ pipeline {
 	 stages {
         stage('Hämta från github') {
             steps {
-                git 'https://github.com/EmeliePozzi/NewAutomationlabb2.git'
+                 git branch: '*/master', url: 'https://github.com/EmeliePozzi/NewAutomationlabb2.git'
 
             }
         }
