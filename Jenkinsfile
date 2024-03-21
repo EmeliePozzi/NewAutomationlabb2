@@ -6,11 +6,7 @@ pipeline {
                 git 'https://github.com/EmeliePozzi/NewAutomationlabb2.git'
             }
         }
-        stage('Clean Workspace') {
-            steps {
-                cleanWs()
-            }
-        }
+
         stage('Build trailrunnerProject') {
             steps {
                 dir('labb2') {
@@ -37,6 +33,11 @@ pipeline {
                         sh script: "robot --nostatusrc test.robot", returnStatus: true
                     }
                 }
+            }
+        }
+                stage('Clean Workspace') {
+            steps {
+                cleanWs()
             }
         }
     }
