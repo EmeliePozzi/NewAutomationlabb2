@@ -18,9 +18,9 @@ pipeline {
         stage('Test trailrunnerProject') {
             steps {
                 dir('labb2') {
-                    script {
-                        sh 'mvn test'
-                    }
+                    
+                        bat 'mvn test'
+                    
                 }
             }
         }
