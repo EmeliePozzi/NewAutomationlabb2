@@ -26,10 +26,15 @@ pipeline {
             }
             //Postar resultatet av Trailrunner-testerna
             post {
-		always {
+		success {
+			echo 'Byggsteg slutfört utan fel.'
 			robot outputPath: 'Selenium/log', passThreshold: 100.0, unstableThreshold: 100.0, onlyCritical: false
 			jacoco(execPattern: '**/labb2/target/*.exec',classPattern: '**/labb2/target/classes/automation/labb',sourcePattern: '**/labb2/src/main/java/automation/labb')
 		        }
+		failure {
+                    	echo 'Byggsteg misslyckades. Vidta åtgärder.'
+                }
+
 	        }
         }
 
