@@ -9,7 +9,7 @@ pipeline {
                 dir('labb2') {
                     
                     script {
-                        sh 'mvn compile'
+                        sh 'mvn clean install'
                     }
                 }
             }
