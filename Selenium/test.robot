@@ -75,6 +75,7 @@ användaren väljer datum
    ${currentDate}    Get Current Date    result_format=%Y-%m-%d
    ${futureDate}=       Add Time To Date    ${currentDate}    1 days
     Input Text    //input[@id='end']    0000
+sleep    5
 
 användaren klickar på continue
    [Documentation]     Väljer att gå vidare
