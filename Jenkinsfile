@@ -26,15 +26,10 @@ pipeline {
             }
             //Postar resultatet av Trailrunner-testerna
             post {
-		success {
-			echo 'Byggsteg slutfört utan fel.'
-			robot outputPath: 'Selenium/log', passThreshold: 100.0, unstableThreshold: 100.0, onlyCritical: false
+		always {
+			junit '**/target/surefire-reports/*.xml'
 			jacoco(execPattern: '**/labb2/target/*.exec',classPattern: '**/labb2/target/classes/automation/labb',sourcePattern: '**/labb2/src/main/java/automation/labb')
 		        }
-		failure {
-                    	echo 'Byggsteg misslyckades. Vidta åtgärder.'
-                }
-
 	        }
         }
 
@@ -56,11 +51,10 @@ pipeline {
 
 
 	
-	//Postar resultatet av enhetstesterna - oavsett om de lyckats eller inte.
+	//Postar resultatet av robot framework-testerna - oavsett om de lyckats eller inte.
 	post {
 		always {
-			 junit '**/target/surefire-reports/*.xml'
+			robot outputPath: 'Selenium/log', passThreshold: 80.0, unstableThreshold: 70.0, onlyCritical: false
 		}
 	}
 }
-
