@@ -28,10 +28,10 @@ pipeline {
         stage('Run Robot framework tests') {
             steps {
                  dir('Selenium') {
-                    script {
-                        sh script: "robot --nostatusrc test.robot", returnStatus: true
-                    }
-                 }
+                    
+                        bat script: "robot --nostatusrc test.robot", returnStatus: true
+                    
+                 
             }
 			
 		}
