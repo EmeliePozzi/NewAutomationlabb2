@@ -30,7 +30,7 @@ pipeline {
                  dir('Selenium') {
                     
                         bat script: "robot --nostatusrc test.robot", returnStatus: true
-                    
+		 }
                  
             }
 			
