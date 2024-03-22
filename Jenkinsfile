@@ -8,15 +8,6 @@ pipeline {
                 cleanWs()
             }
         }
-	   stage('Checkout') {
-
-            steps {
-
-                git  'https://github.com/EmeliePozzi/NewAutomationlabb2.git'
-
-            }
-
-        }
 
 	//Rensar upp och tar bort gamla tillfälliga filer(clean) och kör compile och test(install) Skulle kanske egentligen bytt detta steget till mvn compile.
         stage('Build trailrunnerProject') {
