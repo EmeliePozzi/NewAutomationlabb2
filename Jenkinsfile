@@ -24,7 +24,7 @@ pipeline {
         stage('Run Robot framework tests') {
             steps {
                 dir('Selenium') {
-                    bat script: "robot --nostatusrc test.robot", returnStatus: true
+                    bat "robot test.robot"
                 }
             }
 
@@ -33,9 +33,9 @@ pipeline {
             // Postar resultatet
             post {
                 always {
-                    jacoco(execPattern: '**/labb2/target/*.exec',classPattern: '**/labb2/target/classes/automation/labb',sourcePattern: '**/labb2/src/main/java/automation/labb')
+                    jacoco(execPattern: 'labb2/target/*.exec',classPattern: 'labb2/target/classes/automation/labb',sourcePattern: 'labb2/src/main/java/automation/labb')
                     junit '**/target/surefire-reports/*.xml'
-                    robot outputPath: 'Selenium/log', passThreshold: 80.0, unstableThreshold: 70.0, onlyCritical: false
+                    robot outputPath: 'C:/Users/Emelie/.jenkins/workspace/Emelie_pozzi_Redovisning/Selenium', passThreshold: 80.0
                 }
             }
         }
