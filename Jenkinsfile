@@ -35,7 +35,7 @@ pipeline {
                 always {
                     jacoco(execPattern: 'labb2/target/*.exec',classPattern: 'labb2/target/classes/automation/labb',sourcePattern: 'labb2/src/main/java/automation/labb')
                     junit '**/target/surefire-reports/*.xml'
-                    robot outputPath: 'C:/Users/Emelie/.jenkins/workspace/Emelie_pozzi_Redovisning/Selenium/log', passThreshold: 80.0
+                    robot outputPath: 'C:/Users/Emelie/.jenkins/workspace/Emelie_pozzi_Redovisning/Selenium', passThreshold: 80.0
                 }
             }
         }
