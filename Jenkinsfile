@@ -18,13 +18,6 @@ pipeline {
                     bat 'mvn test'
                 }
             }
-            // Postar resultatet av Trailrunner-testerna
-            post {
-                always {
-                    junit '**/target/surefire-reports/*.xml'
-                    jacoco(execPattern: '**/labb2/target/*.exec',classPattern: '**/labb2/target/classes/automation/labb',sourcePattern: '**/labb2/src/main/java/automation/labb')
-                }
-            }
         }
 
         // Kör Robot Framework-testet
@@ -34,9 +27,14 @@ pipeline {
                     bat script: "robot --nostatusrc test.robot", returnStatus: true
                 }
             }
-            // Postar resultatet av robot framework-testerna - oavsett om de lyckats eller inte.
+
+
+            
+            // Postar resultatet
             post {
                 always {
+                    junit '**/target/surefire-reports/*.xml'
+                    jacoco(execPattern: '**/labb2/target/*.exec',classPattern: '**/labb2/target/classes/automation/labb',sourcePattern: '**/labb2/src/main/java/automation/labb')
                     robot outputPath: 'Selenium/log', passThreshold: 80.0, unstableThreshold: 70.0, onlyCritical: false
                 }
             }
