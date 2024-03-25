@@ -24,7 +24,7 @@ pipeline {
         stage('Run Robot framework tests') {
             steps {
                 dir('Selenium') {
-                    bat "robot --nostatusrc test.robot"
+                    bat "robot test.robot"
                 }
             }
 
