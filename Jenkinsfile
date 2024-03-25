@@ -31,7 +31,7 @@ pipeline {
         stage('Run Robot framework tests') {
             steps {
                 dir('Selenium') {
-                    bat script: "robot --nostatusrc test.robot", returnStatus: true
+                    bat script: "robot --nostatusrc test.robot"
                 }
             }
             // Postar resultatet av robot framework-testerna - oavsett om de lyckats eller inte.
