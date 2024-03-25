@@ -8,7 +8,7 @@ pipeline {
         stage('Build trailrunnerProject') {
             steps {
                 dir('labb2') {
-                        bat 'mvn clean install'
+                        bat 'mvn compile'
                 }
             }
         }
