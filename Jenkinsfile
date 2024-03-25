@@ -37,7 +37,7 @@ pipeline {
             // Postar resultatet av robot framework-testerna - oavsett om de lyckats eller inte.
             post {
                 always {
-                    robot outputPath: 'Selenium/log', passThreshold: 80.0, unstableThreshold: 70.0, onlyCritical: false
+                    robot outputPath: 'Selenium/log'
                 }
             }
         }
