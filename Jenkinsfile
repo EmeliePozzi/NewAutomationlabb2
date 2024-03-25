@@ -4,7 +4,7 @@ pipeline {
   stages {
 
 	  
-	//Rensar upp och tar bort gamla tillfälliga filer(clean) och kör compile och test(install) Skulle eventuellt vara mvn compile istället
+	//Bygger projektet
         stage('Build trailrunnerProject') {
             steps {
                 dir('labb2') {
